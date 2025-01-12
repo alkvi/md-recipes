@@ -1,0 +1,1618 @@
+{
+    "initial": {
+        "diagrams": [
+            {
+                "id": "1699190046793",
+                "items": [
+                    {
+                        "id": "1699190046811",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "Browser",
+                        "transform": {
+                            "x": 524,
+                            "y": 374,
+                            "w": 800,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699190046913",
+                        "appearance": {
+                            "FONT_SIZE": 24,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT": "MD-recipes"
+                        },
+                        "isLocked": true,
+                        "renderer": "Heading",
+                        "transform": {
+                            "x": 524,
+                            "y": 154,
+                            "w": 144,
+                            "h": 48,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699190047055",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Login"
+                        },
+                        "isLocked": true,
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 524,
+                            "y": 381.5,
+                            "w": 226,
+                            "h": 51,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699190047765",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "Username"
+                        },
+                        "isLocked": true,
+                        "renderer": "TextInput",
+                        "transform": {
+                            "x": 524,
+                            "y": 247,
+                            "w": 136,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699190047860",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "Password"
+                        },
+                        "isLocked": true,
+                        "renderer": "TextInput",
+                        "transform": {
+                            "x": 524,
+                            "y": 301,
+                            "w": 136,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    }
+                ],
+                "rootIds": [
+                    "1699190046811",
+                    "1699190046913",
+                    "1699190047055",
+                    "1699190047765",
+                    "1699190047860"
+                ],
+                "title": "Login"
+            },
+            {
+                "id": "1699190046798",
+                "items": [
+                    {
+                        "id": "1699296868734",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "Browser",
+                        "transform": {
+                            "x": 518,
+                            "y": 369,
+                            "w": 800,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296868820",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Shape",
+                            "SHAPE": "Rectangle"
+                        },
+                        "isLocked": true,
+                        "renderer": "Shape",
+                        "transform": {
+                            "x": 187,
+                            "y": 369,
+                            "w": 138,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869036",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe 1",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 371,
+                            "y": 248,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869428",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe 2",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 574,
+                            "y": 248,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869506",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe 3",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 777,
+                            "y": 248,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869584",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe ",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 371,
+                            "y": 405,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869585",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 574,
+                            "y": 405,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869586",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 777,
+                            "y": 405,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869737",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 371,
+                            "y": 562,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869738",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 574,
+                            "y": 562,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296869739",
+                        "appearance": {
+                            "BORDER_RADIUS": 0,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Recipe",
+                            "PADDING_HORIZONTAL2": 10,
+                            "PADDING_VERTICAL2": 10
+                        },
+                        "renderer": "Rectangle",
+                        "transform": {
+                            "x": 777,
+                            "y": 562,
+                            "w": 162,
+                            "h": 136,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870294",
+                        "appearance": {
+                            "ARROW_COLOR": 12434877,
+                            "FOREGROUND_COLOR": 15790320,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 15790320,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true,
+                            "BAR_COLOR": 12434877,
+                            "BAR_POSITION": 0,
+                            "BAR_SIZE": 50
+                        },
+                        "isLocked": true,
+                        "renderer": "VerticalScrollbar",
+                        "transform": {
+                            "x": 908,
+                            "y": 366.5,
+                            "w": 20,
+                            "h": 595,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870553",
+                        "appearance": {
+                            "BACKGROUND_COLOR": 0,
+                            "TEXT_DISABLED": true,
+                            "TEXT": "",
+                            "ICON_FONT_FAMILY": "FontAwesome"
+                        },
+                        "renderer": "Icon",
+                        "transform": {
+                            "x": 156,
+                            "y": 94,
+                            "w": 40,
+                            "h": 40,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871037",
+                        "appearance": {
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT": "User"
+                        },
+                        "renderer": "Label",
+                        "transform": {
+                            "x": 201,
+                            "y": 96,
+                            "w": 46,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871061",
+                        "appearance": {
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "HorizontalLine",
+                        "transform": {
+                            "x": 187,
+                            "y": 123,
+                            "w": 138,
+                            "h": 2,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871472",
+                        "appearance": {
+                            "ACCENT_COLOR": 2191797,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "dinner\nlunch\nvegan*\netc"
+                        },
+                        "renderer": "List",
+                        "transform": {
+                            "x": 187,
+                            "y": 337,
+                            "w": 120,
+                            "h": 130,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871694",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Search"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 157,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871882",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Add recipe"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 187,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296872021",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Tags"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 217,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296872651",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "Search .."
+                        },
+                        "renderer": "TextInput",
+                        "transform": {
+                            "x": 591,
+                            "y": 109,
+                            "w": 372,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296872925",
+                        "appearance": {
+                            "BACKGROUND_COLOR": 0,
+                            "TEXT_DISABLED": true,
+                            "TEXT": "",
+                            "ICON_FONT_FAMILY": "FontAwesome"
+                        },
+                        "renderer": "Icon",
+                        "transform": {
+                            "x": 371,
+                            "y": 104,
+                            "w": 40,
+                            "h": 40,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    }
+                ],
+                "rootIds": [
+                    "1699296868734",
+                    "1699296868820",
+                    "1699296869036",
+                    "1699296869428",
+                    "1699296869506",
+                    "1699296869584",
+                    "1699296869585",
+                    "1699296869586",
+                    "1699296869737",
+                    "1699296869738",
+                    "1699296869739",
+                    "1699296870294",
+                    "1699296870553",
+                    "1699296871037",
+                    "1699296871061",
+                    "1699296871472",
+                    "1699296871694",
+                    "1699296871882",
+                    "1699296872021",
+                    "1699296872651",
+                    "1699296872925"
+                ],
+                "title": "Overview"
+            },
+            {
+                "id": "f3389f5c-1194-8e27-f1a6-a5802afb61b7",
+                "items": [
+                    {
+                        "id": "1699296868734",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "Browser",
+                        "transform": {
+                            "x": 518,
+                            "y": 369,
+                            "w": 800,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296868820",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Shape",
+                            "SHAPE": "Rectangle"
+                        },
+                        "isLocked": true,
+                        "renderer": "Shape",
+                        "transform": {
+                            "x": 187,
+                            "y": 369,
+                            "w": 138,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870294",
+                        "appearance": {
+                            "ARROW_COLOR": 12434877,
+                            "FOREGROUND_COLOR": 15790320,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 15790320,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true,
+                            "BAR_COLOR": 12434877,
+                            "BAR_POSITION": 0,
+                            "BAR_SIZE": 50
+                        },
+                        "isLocked": true,
+                        "renderer": "VerticalScrollbar",
+                        "transform": {
+                            "x": 908,
+                            "y": 366.5,
+                            "w": 20,
+                            "h": 595,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870553",
+                        "appearance": {
+                            "BACKGROUND_COLOR": 0,
+                            "TEXT_DISABLED": true,
+                            "TEXT": "",
+                            "ICON_FONT_FAMILY": "FontAwesome"
+                        },
+                        "renderer": "Icon",
+                        "transform": {
+                            "x": 156,
+                            "y": 94,
+                            "w": 40,
+                            "h": 40,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871037",
+                        "appearance": {
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT": "User"
+                        },
+                        "renderer": "Label",
+                        "transform": {
+                            "x": 201,
+                            "y": 96,
+                            "w": 46,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871061",
+                        "appearance": {
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "HorizontalLine",
+                        "transform": {
+                            "x": 187,
+                            "y": 123,
+                            "w": 138,
+                            "h": 2,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871472",
+                        "appearance": {
+                            "ACCENT_COLOR": 2191797,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "dinner\nlunch\nvegan*\netc"
+                        },
+                        "renderer": "List",
+                        "transform": {
+                            "x": 187,
+                            "y": 337,
+                            "w": 120,
+                            "h": 130,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871694",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Search"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 157,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871882",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Add recipe"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 187,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296872021",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Tags"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 217,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296873254",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Shape",
+                            "SHAPE": "Rectangle"
+                        },
+                        "isLocked": true,
+                        "renderer": "Shape",
+                        "transform": {
+                            "x": 577.5,
+                            "y": 369.5,
+                            "w": 609,
+                            "h": 567,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296873474",
+                        "appearance": {
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "---\ntitle: A New Hope\nyear: 1977\nfavorite: true\ncast:\n  - Mark Hamill\n  - Harrison Ford\n  - Carrie Fisher\n---\n\n# Title\n\n# Ingredients\n\n- 5 apples\n- 3 oranges\n- 1 banana\n- 5 dl yoghurt\n- 1 ice cream\n\n# Instructions\n\nAdd the banan and apples and oranges to the yoghurt. Serve with ice cream."
+                        },
+                        "renderer": "Paragraph",
+                        "transform": {
+                            "x": 586,
+                            "y": 368.5,
+                            "w": 530,
+                            "h": 477,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    }
+                ],
+                "rootIds": [
+                    "1699296868734",
+                    "1699296868820",
+                    "1699296870294",
+                    "1699296870553",
+                    "1699296871037",
+                    "1699296871061",
+                    "1699296871472",
+                    "1699296871694",
+                    "1699296871882",
+                    "1699296872021",
+                    "1699296873254",
+                    "1699296873474"
+                ],
+                "title": "Recipe view/edit - markdown mode"
+            },
+            {
+                "id": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "items": [
+                    {
+                        "id": "1699296868734",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "Browser",
+                        "transform": {
+                            "x": 518,
+                            "y": 369,
+                            "w": 800,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296868820",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Shape",
+                            "SHAPE": "Rectangle"
+                        },
+                        "isLocked": true,
+                        "renderer": "Shape",
+                        "transform": {
+                            "x": 187,
+                            "y": 369,
+                            "w": 138,
+                            "h": 600,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870294",
+                        "appearance": {
+                            "ARROW_COLOR": 12434877,
+                            "FOREGROUND_COLOR": 15790320,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 15790320,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true,
+                            "BAR_COLOR": 12434877,
+                            "BAR_POSITION": 0,
+                            "BAR_SIZE": 50
+                        },
+                        "isLocked": true,
+                        "renderer": "VerticalScrollbar",
+                        "transform": {
+                            "x": 908,
+                            "y": 366.5,
+                            "w": 20,
+                            "h": 595,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296870553",
+                        "appearance": {
+                            "BACKGROUND_COLOR": 0,
+                            "TEXT_DISABLED": true,
+                            "TEXT": "",
+                            "ICON_FONT_FAMILY": "FontAwesome"
+                        },
+                        "renderer": "Icon",
+                        "transform": {
+                            "x": 156,
+                            "y": 94,
+                            "w": 40,
+                            "h": 40,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871037",
+                        "appearance": {
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT": "User"
+                        },
+                        "renderer": "Label",
+                        "transform": {
+                            "x": 201,
+                            "y": 96,
+                            "w": 46,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871061",
+                        "appearance": {
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 2,
+                            "TEXT_DISABLED": true
+                        },
+                        "isLocked": true,
+                        "renderer": "HorizontalLine",
+                        "transform": {
+                            "x": 187,
+                            "y": 123,
+                            "w": 138,
+                            "h": 2,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871472",
+                        "appearance": {
+                            "ACCENT_COLOR": 2191797,
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "left",
+                            "TEXT": "dinner\nlunch\nvegan*\netc"
+                        },
+                        "renderer": "List",
+                        "transform": {
+                            "x": 187,
+                            "y": 337,
+                            "w": 120,
+                            "h": 130,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871694",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Search"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 157,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296871882",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Add recipe"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 187,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296872021",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 15790320,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 2434341,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Tags"
+                        },
+                        "renderer": "Button",
+                        "transform": {
+                            "x": 185.5,
+                            "y": 217,
+                            "w": 135,
+                            "h": 30,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296873254",
+                        "appearance": {
+                            "FOREGROUND_COLOR": 16777215,
+                            "FONT_SIZE": 16,
+                            "BACKGROUND_COLOR": 0,
+                            "STROKE_COLOR": 13224393,
+                            "STROKE_THICKNESS": 1,
+                            "TEXT_ALIGNMENT": "center",
+                            "TEXT": "Shape",
+                            "SHAPE": "Rectangle"
+                        },
+                        "isLocked": true,
+                        "renderer": "Shape",
+                        "transform": {
+                            "x": 577.5,
+                            "y": 369.5,
+                            "w": 609,
+                            "h": 567,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    },
+                    {
+                        "id": "1699296873653",
+                        "appearance": {
+                            "FONT_SIZE": 24,
+                            "BACKGROUND_COLOR": 2434341,
+                            "TEXT": "Heading"
+                        },
+                        "renderer": "Heading",
+                        "transform": {
+                            "x": 372,
+                            "y": 241,
+                            "w": 108,
+                            "h": 48,
+                            "r": 0
+                        },
+                        "type": "Shape"
+                    }
+                ],
+                "rootIds": [
+                    "1699296868734",
+                    "1699296868820",
+                    "1699296870294",
+                    "1699296870553",
+                    "1699296871037",
+                    "1699296871061",
+                    "1699296871472",
+                    "1699296871694",
+                    "1699296871882",
+                    "1699296872021",
+                    "1699296873254",
+                    "1699296873653"
+                ],
+                "title": "Recipe view/edit - view mode"
+            }
+        ],
+        "diagramIds": [
+            "1699190046793",
+            "1699190046798",
+            "f3389f5c-1194-8e27-f1a6-a5802afb61b7",
+            "237678e2-dcaf-cfbe-fa20-d252e97cec7e"
+        ],
+        "id": "bd334a4c-4d48-0088-b44a-a007660af633",
+        "size": {
+            "x": 1000,
+            "y": 1000
+        }
+    },
+    "actions": [
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298608598,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "Ingredients"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296873653"
+                ]
+            }
+        },
+        {
+            "type": "items/paste",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298611319,
+                "json": "{\"visuals\":[{\"id\":\"1699296873667\",\"appearance\":{\"FONT_SIZE\":24,\"BACKGROUND_COLOR\":2434341,\"TEXT\":\"Ingredients\"},\"renderer\":\"Heading\",\"transform\":{\"x\":386,\"y\":241,\"w\":136,\"h\":48,\"r\":0},\"type\":\"Shape\"}],\"groups\":[]}",
+                "offset": 50
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298613144,
+                "oldBounds": {
+                    "x": 436,
+                    "y": 291,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 392,
+                    "y": 355,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873667"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298618608,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "Instructions"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296873667"
+                ]
+            }
+        },
+        {
+            "type": "items/paste",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298624873,
+                "json": "{\"visuals\":[{\"id\":\"1699296873724\",\"appearance\":{\"FONT_SIZE\":24,\"BACKGROUND_COLOR\":2434341,\"TEXT\":\"Ingredients\"},\"renderer\":\"Heading\",\"transform\":{\"x\":386,\"y\":241,\"w\":136,\"h\":48,\"r\":0},\"type\":\"Shape\"}],\"groups\":[]}",
+                "offset": 50
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298628852,
+                "oldBounds": {
+                    "x": 436,
+                    "y": 291,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 386,
+                    "y": 133,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873724"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298632015,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "Title"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296873724"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298635820,
+                "oldBounds": {
+                    "x": 395,
+                    "y": 355,
+                    "w": 142,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 389,
+                    "y": 421,
+                    "w": 142,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873667"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298637738,
+                "oldBounds": {
+                    "x": 386,
+                    "y": 241,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 386,
+                    "y": 304,
+                    "w": 136,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873653"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298640871,
+                "oldBounds": {
+                    "x": 389,
+                    "y": 421,
+                    "w": 142,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 389,
+                    "y": 479,
+                    "w": 142,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873667"
+                ]
+            }
+        },
+        {
+            "type": "items/addShape",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298674381,
+                "id": "1699296874129",
+                "renderer": "TextArea",
+                "position": {
+                    "x": 295.5,
+                    "y": 333
+                }
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298676479,
+                "oldBounds": {
+                    "x": 375,
+                    "y": 363,
+                    "w": 160,
+                    "h": 60,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 386,
+                    "y": 358,
+                    "w": 160,
+                    "h": 60,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874129"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298679371,
+                "oldBounds": {
+                    "x": 386,
+                    "y": 358,
+                    "w": 160,
+                    "h": 60,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 582.5,
+                    "y": 391.5,
+                    "w": 553,
+                    "h": 127,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874129"
+                ]
+            }
+        },
+        {
+            "type": "items/paste",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298680892,
+                "json": "{\"visuals\":[{\"id\":\"1699296874213\",\"appearance\":{\"FOREGROUND_COLOR\":16777215,\"FONT_SIZE\":16,\"BACKGROUND_COLOR\":2434341,\"STROKE_COLOR\":13224393,\"STROKE_THICKNESS\":1,\"TEXT_ALIGNMENT\":\"left\",\"TEXT\":\"TextArea\"},\"renderer\":\"TextArea\",\"transform\":{\"x\":582.5,\"y\":391.5,\"w\":553,\"h\":127,\"r\":0},\"type\":\"Shape\"}],\"groups\":[]}",
+                "offset": 50
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298683414,
+                "oldBounds": {
+                    "x": 632.5,
+                    "y": 441.5,
+                    "w": 553,
+                    "h": 127,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 582.5,
+                    "y": 572.5,
+                    "w": 553,
+                    "h": 127,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874213"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298696066,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "- 5 apples\n- 3 oranges\n- 1 banana\n- 5 dl yoghurt\n- 1 ice cream"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296874129"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298706461,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "- 5 apples -"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296874129"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298709459,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "- 5 apples"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296874129"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298713547,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "Do things"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296874213"
+                ]
+            }
+        },
+        {
+            "type": "items/addShape",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298726876,
+                "id": "1699296874384",
+                "renderer": "Image",
+                "position": {
+                    "x": 353.5,
+                    "y": 156
+                }
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298739432,
+                "oldBounds": {
+                    "x": 403,
+                    "y": 206,
+                    "w": 100,
+                    "h": 100,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 659,
+                    "y": 157,
+                    "w": 100,
+                    "h": 100,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874384"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298741938,
+                "oldBounds": {
+                    "x": 659,
+                    "y": 157,
+                    "w": 100,
+                    "h": 100,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 724,
+                    "y": 198,
+                    "w": 230,
+                    "h": 182,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874384"
+                ]
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298748555,
+                "oldBounds": {
+                    "x": 351,
+                    "y": 133,
+                    "w": 66,
+                    "h": 48,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 462,
+                    "y": 123,
+                    "w": 66,
+                    "h": 48,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296873724"
+                ]
+            }
+        },
+        {
+            "type": "items/addShape",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298805866,
+                "id": "1699296874825",
+                "renderer": "TextArea",
+                "position": {
+                    "x": 300.5,
+                    "y": 145
+                }
+            }
+        },
+        {
+            "type": "items/transform",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298808398,
+                "oldBounds": {
+                    "x": 380,
+                    "y": 175,
+                    "w": 160,
+                    "h": 60,
+                    "r": 0
+                },
+                "newBounds": {
+                    "x": 441,
+                    "y": 203.5,
+                    "w": 282,
+                    "h": 117,
+                    "r": 0
+                },
+                "itemIds": [
+                    "1699296874825"
+                ]
+            }
+        },
+        {
+            "type": "items/appearance",
+            "payload": {
+                "diagramId": "237678e2-dcaf-cfbe-fa20-d252e97cec7e",
+                "timestamp": 1699298812527,
+                "appearance": {
+                    "key": "TEXT",
+                    "value": "Metadata tags"
+                },
+                "force": false,
+                "itemIds": [
+                    "1699296874825"
+                ]
+            }
+        }
+    ]
+}

@@ -74,3 +74,29 @@ func (h *RecipeController) DeleteRecipe(w http.ResponseWriter, r *http.Request) 
     }
     w.WriteHeader(http.StatusNoContent)
 }
+
+func (h *RecipeController) GetRecipeByFilename(w http.ResponseWriter, r *http.Request) {
+    filename := chi.URLParam(r, "filename")
+    recipe := h.service.GetRecipeByFilename(filename)
+    if recipe == nil {
+        http.Error(w, "Recipe not found", http.StatusNotFound)
+        return
+    }
+    err := json.NewEncoder(w).Encode(recipe)
+    if err != nil {
+        http.Error(w, "Internal error", http.StatusInternalServerError)
+    }
+}
+
+func (h *RecipeController) SearchRecipes(w http.ResponseWriter, r *http.Request) {
+    query := r.URL.Query().Get("query")
+    if query == "" {
+        http.Error(w, "Query parameter is required", http.StatusBadRequest)
+        return
+    }
+    recipes := h.service.SearchRecipes(query)
+    err := json.NewEncoder(w).Encode(recipes)
+    if err != nil {
+        http.Error(w, "Internal error", http.StatusInternalServerError)
+    }
+}

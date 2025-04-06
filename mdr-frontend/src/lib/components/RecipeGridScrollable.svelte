@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     import RecipeCard from './RecipeCard.svelte';
     // placeholder for recipes; these should be acquired from db
-    const recipe_list = ['recipe1', 'recipe2', 'recipe3',
+    const recipe_list: string[] = ['recipe1', 'recipe2', 'recipe3',
     'recipe4', 'recipe5', 'recipe6',
     'recipe7', 'recipe8', 'recipe9',
     'recipe10', 'recipe11', 'recipe12',

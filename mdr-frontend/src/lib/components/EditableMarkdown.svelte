@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import markdownit from 'markdown-it';
     import DOMPurify from 'dompurify';
 
-    const dispatch = createEventDispatcher();
+    const dispatch = createEventDispatcher<{
+        save: { content: string; renderedContent: string };
+        cancel: void;
+    }>();
     const md = markdownit();
 
     export let content = '';
@@ -15,14 +18,14 @@
         rawContent = content;
     }
 
-    function handleSave() {
+    function handleSave(): void {
         content = rawContent;
         const renderedContent = DOMPurify.sanitize(md.render(content));
         dispatch('save', { content, renderedContent });
         isEditing = false;
     }
 
-    function handleCancel() {
+    function handleCancel(): void {
         isEditing = false;
         dispatch('cancel');
     }

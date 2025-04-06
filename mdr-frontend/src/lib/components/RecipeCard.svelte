@@ -1,5 +1,5 @@
-<script>
-    export const content = "test";
+<script lang="ts">
+    export const content: string = "test";
 </script>
 
 <div class="main">

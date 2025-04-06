@@ -1,5 +1,4 @@
-    
-<script>
+<script lang="ts">
     import RecipeGrid from '$lib/components/RecipeGrid.svelte';
 </script>
    

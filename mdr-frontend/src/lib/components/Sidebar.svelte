@@ -1,15 +1,15 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	
 	const fadeIn = {
 		delay: 100,
 		duration: 200
-	}
+	} as const;
 	
 	const fadeOut = {
 		delay: 0,
 		duration: 100
-	}
+	} as const;
 	
 	let isExpanded = false;
 </script>

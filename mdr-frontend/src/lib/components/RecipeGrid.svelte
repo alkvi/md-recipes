@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
     import RecipeCard from './RecipeCard.svelte';
+    import type { Recipe } from '$lib/types/recipe';
 
-    let error = null;
+    let error: string | null = null;
     let loading = true;
-    let recipes = [];
+    let recipes: Recipe[] = [];
 
-    onMount(async () => {
+    onMount(async (): Promise<void> => {
         try {
             console.log("Fetching recipes");
             const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes`);
@@ -15,7 +16,7 @@
             }
             recipes = await response.json();
         } catch (e) {
-            error = e.message;
+            error = e instanceof Error ? e.message : 'Unknown error';
         } finally {
             loading = false;
         }

@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import RecipeCard from './RecipeCard.svelte';
     import type { Recipe } from '$lib/types/recipe';
+    import { stripExtension } from '$lib/utils/string';
 
     let error: string | null = null;
     let loading = true;
@@ -15,6 +16,10 @@
                 throw new Error('Failed to fetch recipes');
             }
             recipes = await response.json();
+            recipes = recipes.map(recipe => ({
+                ...recipe,
+                title: stripExtension(recipe.title)
+            }));
         } catch (e) {
             error = e instanceof Error ? e.message : 'Unknown error';
         } finally {

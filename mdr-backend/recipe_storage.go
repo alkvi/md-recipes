@@ -4,13 +4,17 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"os"
+	"path/filepath"
+	"strings"
+	"time"
+	"unicode"
 )
 
 // Generic interface for a recipe storage
 type RecipeStorage interface {
 	List() []*Recipe
 	Get(string) *Recipe
-	Update(string, Recipe) *Recipe
+	Update(string, Recipe) (Recipe, error)
 	Create(Recipe)
 	Delete(string) *Recipe
 }
@@ -47,11 +51,11 @@ func (b RecipeFileStore) Get(id string) *Recipe {
 	}
 
 	return &Recipe{
-		ID:          id,
-		Title:       filename,
-		Filename:    filename,
-		Content:     string(content),
-		CreatedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
+		ID:           id,
+		Title:        filename,
+		Filename:     filename,
+		Content:      string(content),
+		ModifiedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
 	}
 }
 
@@ -95,12 +99,12 @@ func (b RecipeFileStore) List() []*Recipe {
 
 		// Create a new Recipe struct with file details
 		recipe := &Recipe{
-			ID:          id,
-			Title:       file.Name(),
-			Filename:    file.Name(),
-			Content:     string(content),
-			CreatedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
-			Tags:        tags,
+			ID:           id,
+			Title:        file.Name(),
+			Filename:     file.Name(),
+			Content:      string(content),
+			ModifiedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
+			Tags:         tags,
 		}
 
 		// Add the recipe to the slice
@@ -118,42 +122,67 @@ func (b RecipeFileStore) Delete(id string) *Recipe {
 	return nil
 }
 
-func (b RecipeFileStore) Update(id string, recipeUpdate Recipe) *Recipe {
-	filename, exists := b.metadata[id]
+func (b RecipeFileStore) Update(id string, recipe Recipe) (Recipe, error) {
+	// Get the current filename
+	oldFilename, exists := b.metadata[id]
 	if !exists {
-		return nil
+		return Recipe{}, fmt.Errorf("recipe not found")
 	}
 
-	filePath := b.folderPath + "/" + filename
+	// Generate new filename based on title
+	newFilename := sanitizeFilename(recipe.Title) + ".md"
+	newPath := filepath.Join(b.folderPath, newFilename)
 
-	// Write the new content to the file with permissions:
-	// -rw-r--r--
-	err := os.WriteFile(filePath, []byte(recipeUpdate.Content), 0644)
+	// If the title has changed, we need to rename the file
+	if oldFilename != newFilename {
+		oldPath := filepath.Join(b.folderPath, oldFilename)
+
+		// Check if new filename already exists
+		if _, err := os.Stat(newPath); err == nil {
+			return Recipe{}, fmt.Errorf("a recipe with this title already exists")
+		}
+
+		// Rename the file
+		if err := os.Rename(oldPath, newPath); err != nil {
+			return Recipe{}, fmt.Errorf("failed to rename recipe file: %w", err)
+		}
+
+		// Update the filename mapping
+		b.metadata[id] = newFilename
+	}
+
+	// Write the new content to the file
+	// File permissions: owner can read and write (6), group and others can only read (4)
+	// 0644 = -rw-r--r--
+	if err := os.WriteFile(newPath, []byte(recipe.Content), 0644); err != nil {
+		return Recipe{}, fmt.Errorf("failed to write recipe file: %w", err)
+	}
+
+	// Get the file info to update the modification time
+	info, err := os.Stat(newPath)
 	if err != nil {
-		return nil
+		return Recipe{}, fmt.Errorf("failed to get file info: %w", err)
 	}
 
-	// Get the updated file info
-	fileInfo, err := os.Stat(filePath)
-	if err != nil {
-		return nil
-	}
-
-	// Add basic tags based on filename or content (as an example)
-	// TODO: add based in metadata section in the markdown
-	tags := []string{}
-
-	return &Recipe{
-		ID:          id,
-		Title:       filename,
-		Filename:    filename,
-		Content:     recipeUpdate.Content,
-		CreatedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
-		Tags:        tags,
-	}
+	// Update the recipe with the new modification time
+	recipe.ModifiedDate = info.ModTime().Format(time.RFC3339)
+	return recipe, nil
 }
 
 // Utility function to generate a unique ID
 func generateID(input string) string {
 	return fmt.Sprintf("%x", sha256.Sum256([]byte(input)))
+}
+
+func sanitizeFilename(title string) string {
+	// Replace spaces with hyphens and remove invalid characters
+	return strings.Map(func(r rune) rune {
+		if r == ' ' {
+			return '-'
+		}
+		if !unicode.IsLetter(r) && !unicode.IsNumber(r) && r != '-' && r != '_' {
+			return -1
+		}
+		return r
+	}, strings.ToLower(title))
 }

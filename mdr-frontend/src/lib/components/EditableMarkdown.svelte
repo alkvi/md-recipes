@@ -44,7 +44,13 @@
         </div>
     </div>
 {:else}
-    <div class="content" on:click={() => isEditing = true}>
+    <div 
+        class="content" 
+        on:click={() => isEditing = true} 
+        on:keydown={(e) => e.key === 'Enter' && (isEditing = true)}
+        role="button" 
+        tabindex="0"
+    >
         {@html DOMPurify.sanitize(md.render(content))}
     </div>
 {/if}

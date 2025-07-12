@@ -15,6 +15,7 @@
     
     $: id = $page.params.id;
 
+    // Decorative separator via melt
     const {
         elements: { root: separator },
     } = createSeparator({
@@ -22,11 +23,22 @@
         decorative: true,
     });
 
+    // Handles editing toggle via the title
+    // which is a button styled as h1
+    function toggleEditing(event: KeyboardEvent | MouseEvent) {
+        if (event.type === 'keydown' && (event as KeyboardEvent).key !== 'Enter' && (event as KeyboardEvent).key !== ' ') {
+            return;
+        }
+        isEditing = true;
+    }
+
+    // Strip the metadata preamble in markdown content
     function stripPreamble(content: string): string {
         const preamble_regex = /^(---|\+\+\+)[\s\S]+?\1/;
         return content.replace(preamble_regex, '').trim();
     }
 
+    // Save recipe
     function handleSave(event: CustomEvent<{ content: string; renderedContent: string }>): void {
         if (recipe) {
             const editedContent = event.detail.content;
@@ -62,6 +74,17 @@
         }
     }
 
+    // User pressed cancel editing
+    function handleCancel(): void {
+        if (recipe) {
+            // Revert both content and title to their original values
+            recipe.content = stripPreamble(originalContent);
+            recipe.title = stripExtension(originalTitle);
+        }
+        isEditing = false;
+    }
+
+    // Fetch recipe when first mounted
     onMount(async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes/${id}`);
@@ -91,20 +114,27 @@
     <article>
         {#if isEditing && recipe}
             <input 
-                type="text" 
-                bind:value={recipe.title} 
+                type="text"
+                bind:value={recipe.title}
                 class="title-input"
                 placeholder="Recipe title"
             />
         {:else}
-            <h1 on:click={() => isEditing = true}>{recipe?.title}</h1>
+            <button 
+                class="title-button"
+                on:click={toggleEditing}
+                on:keydown={toggleEditing}
+            >
+                <h1>{recipe?.title}</h1>
+            </button>
         {/if}
         <p><strong>Last Modified:</strong> {recipe?.modified_date}</p>
-        <div use:melt={$separator} class="separator" />
+        <div use:melt={$separator} class="separator"></div>
         <EditableMarkdown 
             content={isEditing ? originalContent : recipe?.content || ''}
             bind:isEditing
             on:save={handleSave}
+            on:cancel={handleCancel}
         />
     </article>
 {/if}
@@ -131,11 +161,22 @@
         margin-bottom: 1rem;
     }
 
-    h1 {
+    .title-button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        width: 100%;
         cursor: pointer;
     }
 
-    h1:hover {
+    .title-button:hover h1 {
         background-color: #f5f5f5;
+    }
+
+    .title-button:focus-visible h1 {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
     }
 </style>

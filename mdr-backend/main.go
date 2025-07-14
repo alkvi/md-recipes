@@ -2,10 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"net/http"
+	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -16,6 +20,10 @@ func main() {
 		panic("Failed to load configuration: " + err.Error())
 	}
 
+	// Create logger
+	log := SetupLogger(config)
+	log.Debug("Logger initiated")
+
 	// Create router
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
@@ -23,8 +31,31 @@ func main() {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("OK"))
 	})
-	r.Mount("/recipes", RecipeRoutes(config))
+	r.Mount("/recipes", RecipeRoutes(config, log))
 	http.ListenAndServe(":3000", r)
+}
+
+// Log specific setup
+func SetupLogger(config *AppConfig) *logrus.Logger {
+    logger := logrus.New()
+    logger.SetOutput(os.Stdout)
+
+    // Use colored, timestamped text formatter
+    logger.SetFormatter(&logrus.TextFormatter{
+        ForceColors:     true,
+        FullTimestamp:   true,
+        TimestampFormat: "2006-01-02 15:04:05",
+    })
+
+    // Parse log level from config (case-insensitive)
+    level, err := logrus.ParseLevel(strings.ToLower(config.LogLevel))
+    if err != nil {
+        logger.Warnf("Invalid log level '%s', defaulting to 'info'", config.LogLevel)
+        level = logrus.InfoLevel
+    }
+
+    logger.SetLevel(level)
+    return logger
 }
 
 func corsMiddleware(next http.Handler) http.Handler {
@@ -40,14 +71,14 @@ func corsMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func RecipeRoutes(config *AppConfig) chi.Router {
+func RecipeRoutes(config *AppConfig, logger *logrus.Logger) chi.Router {
 
 	folderPath := config.FolderPath
 	fmt.Println("Using folder path:", folderPath)
 
-	storage := NewRecipeFileStore(config)
-	service := &RecipeService{storage: storage}
-	controller := &RecipeController{service: service}
+	storage := NewRecipeFileStore(config, logger)
+	service := &RecipeService{storage: storage, logger: logger}
+	controller := &RecipeController{service: service, logger: logger}
 
 	r := chi.NewRouter()
 	r.Get("/", controller.ListRecipes)
@@ -55,5 +86,6 @@ func RecipeRoutes(config *AppConfig) chi.Router {
 	r.Get("/{id}", controller.GetRecipe)
 	r.Put("/{id}", controller.UpdateRecipe)
 	r.Delete("/{id}", controller.DeleteRecipe)
+	r.Get("/search", controller.SearchRecipes)
 	return r
 }

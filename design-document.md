@@ -73,6 +73,7 @@ Consume API with Svelte
 
 Markdown parsing with markdown-it
 https://github.com/markdown-it/markdown-it
+
 ## Application layer
 
 Recipe handling logic, user handling logic

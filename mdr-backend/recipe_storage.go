@@ -8,6 +8,8 @@ import (
 	"strings"
 	"time"
 	"unicode"
+
+	"github.com/sirupsen/logrus"
 )
 
 // Generic interface for a recipe storage
@@ -23,13 +25,15 @@ type RecipeStorage interface {
 type RecipeFileStore struct {
 	folderPath string
 	metadata   map[string]string
+	logger *logrus.Logger
 }
 
 // Create a new file store
-func NewRecipeFileStore(config *AppConfig) *RecipeFileStore {
+func NewRecipeFileStore(config *AppConfig, logger *logrus.Logger) *RecipeFileStore {
 	return &RecipeFileStore{
 		folderPath: config.FolderPath,
 		metadata:   make(map[string]string),
+		logger: logger,
 	}
 }
 

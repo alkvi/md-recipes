@@ -10,6 +10,7 @@ Under construction.
 
 ~~~
 cd mdr-backend
+god mod tidy
 go run .
 ~~~
 

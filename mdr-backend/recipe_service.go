@@ -2,10 +2,13 @@ package main
 
 import (
 	"strings"
+
+	"github.com/sirupsen/logrus"
 )
 
 type RecipeService struct {
 	storage RecipeStorage
+	logger *logrus.Logger
 }
 
 func (s *RecipeService) ListRecipes() []*Recipe {
@@ -43,20 +46,51 @@ func (s *RecipeService) GetRecipeByFilename(filename string) *Recipe {
 	return nil
 }
 
-func (s *RecipeService) SearchRecipes(query string) []*Recipe {
+func (s *RecipeService) SearchRecipes(filters map[string]string) []*Recipe {
 	allRecipes := s.storage.List()
 	var results []*Recipe
+
 	for _, recipe := range allRecipes {
-		if strings.Contains(recipe.Title, query) || strings.Contains(recipe.Content, query) || contains(recipe.Tags, query) {
+		if matchesFilters(recipe, filters) {
 			results = append(results, recipe)
 		}
 	}
 	return results
 }
 
+func matchesFilters(recipe *Recipe, filters map[string]string) bool {
+	for key, value := range filters {
+		switch key {
+		case "title":
+			if !strings.Contains(strings.ToLower(recipe.Title), strings.ToLower(value)) {
+				return false
+			}
+		case "tag":
+			if !containsIgnoreCase(recipe.Tags, value) {
+				return false
+			}
+		case "id":
+			if recipe.ID != value {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func contains(slice []string, term string) bool {
 	for _, item := range slice {
 		if strings.Contains(item, term) {
+			return true
+		}
+	}
+	return false
+}
+
+func containsIgnoreCase(slice []string, term string) bool {
+	term = strings.ToLower(term)
+	for _, item := range slice {
+		if strings.Contains(strings.ToLower(item), term) {
 			return true
 		}
 	}

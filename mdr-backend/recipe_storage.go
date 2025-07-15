@@ -24,6 +24,8 @@ type RecipeStorage interface {
 // Storage for recipes in a folder
 type RecipeFileStore struct {
 	folderPath string
+	markdownPath string
+	imagePath string
 	metadata   map[string]string
 	logger *logrus.Logger
 }
@@ -32,6 +34,8 @@ type RecipeFileStore struct {
 func NewRecipeFileStore(config *AppConfig, logger *logrus.Logger) *RecipeFileStore {
 	return &RecipeFileStore{
 		folderPath: config.FolderPath,
+		markdownPath: config.FolderPath + "/markdown",
+		imagePath: config.FolderPath + "/images",
 		metadata:   make(map[string]string),
 		logger: logger,
 	}
@@ -43,7 +47,7 @@ func (b RecipeFileStore) Get(id string) *Recipe {
 		return nil
 	}
 
-	filePath := b.folderPath + "/" + filename
+	filePath := b.markdownPath + "/" + filename
 	content, err := os.ReadFile(filePath)
 	if err != nil {
 		return nil
@@ -66,7 +70,7 @@ func (b RecipeFileStore) Get(id string) *Recipe {
 func (b RecipeFileStore) List() []*Recipe {
 
 	// Read the directory contents using os.ReadDir
-	files, err := os.ReadDir(b.folderPath)
+	files, err := os.ReadDir(b.markdownPath)
 	if err != nil {
 		// Handle the error (e.g., log it or return an empty list)
 		return nil
@@ -87,7 +91,7 @@ func (b RecipeFileStore) List() []*Recipe {
 		}
 
 		// Read the file content using os.ReadFile
-		content, err := os.ReadFile(b.folderPath + "/" + file.Name())
+		content, err := os.ReadFile(b.markdownPath + "/" + file.Name())
 		if err != nil {
 			continue // Skip files that can't be read
 		}
@@ -131,11 +135,11 @@ func (b RecipeFileStore) Update(id string, recipe Recipe) (Recipe, error) {
 
 	// Generate new filename based on title
 	newFilename := sanitizeFilename(recipe.Title) + ".md"
-	newPath := filepath.Join(b.folderPath, newFilename)
+	newPath := filepath.Join(b.markdownPath, newFilename)
 
 	// If the title has changed, we need to rename the file
 	if oldFilename != newFilename {
-		oldPath := filepath.Join(b.folderPath, oldFilename)
+		oldPath := filepath.Join(b.markdownPath, oldFilename)
 
 		// Check if new filename already exists
 		if _, err := os.Stat(newPath); err == nil {

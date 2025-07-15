@@ -1,5 +1,16 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
     import Sidebar from "$lib/components/Sidebar.svelte";
+	import { backendConfig as configStore } from '$lib/stores/backendConfig';
+
+	// `data` comes from +layout.server.js
+	export let data;
+
+	onMount(() => {
+		// Set the config into the store after hydration
+		configStore.set(data.config);
+	});
+
 </script>
 
 <div class="app">

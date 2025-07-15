@@ -6,8 +6,8 @@ import (
 )
 
 type AppConfig struct {
-    FolderPath string `yaml:"folder_path"`
-    LogLevel string `yaml:"log_level"`
+    FolderPath string `json:"folderPath" yaml:"folder_path"`
+    LogLevel   string `json:"logLevel" yaml:"log_level"`
 }
 
 func LoadConfig(path string) (*AppConfig, error) {

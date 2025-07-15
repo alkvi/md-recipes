@@ -92,10 +92,6 @@ func (b RecipeFileStore) List() []*Recipe {
 			continue // Skip files that can't be read
 		}
 
-		// Add basic tags based on filename or content (as an example)
-		// TODO: add based in metadata section in the markdown
-		tags := []string{}
-
 		// Generate an ID for this file by hashing
 		// the filename and store the id-filename mapping
 		id := generateID(file.Name())
@@ -108,7 +104,7 @@ func (b RecipeFileStore) List() []*Recipe {
 			Filename:     file.Name(),
 			Content:      string(content),
 			ModifiedDate: fileInfo.ModTime().Format("2006-01-02 15:04:05"),
-			Tags:         tags,
+			Tags:         nil, // We will fill in tags later
 		}
 
 		// Add the recipe to the slice

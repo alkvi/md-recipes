@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"net/http"
 	"strings"
@@ -74,7 +73,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 func RecipeRoutes(config *AppConfig, logger *logrus.Logger) chi.Router {
 
 	folderPath := config.FolderPath
-	fmt.Println("Using folder path:", folderPath)
+	logger.Infof("Using folder path: %s", folderPath)
 
 	storage := NewRecipeFileStore(config, logger)
 	service := &RecipeService{storage: storage, logger: logger}

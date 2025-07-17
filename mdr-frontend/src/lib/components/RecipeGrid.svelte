@@ -4,9 +4,9 @@
     import type { Recipe } from '$lib/types/recipe';
     import { stripExtension } from '$lib/utils/string';
 
-    let error: string | null = null;
-    let loading = true;
-    let recipes: Recipe[] = [];
+    let error = $state<string | null>(null);
+    let loading = $state(true);
+    let recipes = $state<Recipe[]>([]);
 
     onMount(async (): Promise<void> => {
         try {

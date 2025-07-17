@@ -11,7 +11,7 @@
 		duration: 100
 	} as const;
 	
-	let isExpanded = false;
+	let isExpanded = $state(false);
 </script>
 
 <nav class:expanded={isExpanded}>

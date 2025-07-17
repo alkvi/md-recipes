@@ -1,20 +1,20 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { page } from '$app/stores';
     import EditableMarkdown from '$lib/components/EditableMarkdown.svelte';
     import { createSeparator, melt } from '@melt-ui/svelte';
     import type { Recipe } from '$lib/types/recipe';
     import { stripExtension } from '$lib/utils/string';
+    import { page } from '$app/stores';
 
-    let recipe: Recipe | null = null;
-    let error: string | null = null;
-    let loading = true;
-    let isEditing = false;
-    let originalContent = '';
-    let originalTitle = '';
+    const { params } = $props();
+    let id = $derived($page.params.id);
+    let recipe = $state<Recipe | null>(null);
+    let error = $state<string | null>(null);
+    let loading = $state(true);
+    let isEditing = $state(false);
+    let originalContent = $state('');
+    let originalTitle = $state('');
     
-    $: id = $page.params.id;
-
     // Decorative separator via melt
     const {
         elements: { root: separator },
@@ -43,7 +43,7 @@
         if (recipe) {
             console.log('Saving recipe...');
             const editedContent = detail.content;
-            recipe.content = editedContent;
+            recipe = { ...recipe, content: editedContent };
             
             // Save changes to the backend
             fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes/${id}`, {
@@ -62,11 +62,11 @@
                 }
                 return response.json();
             })
-            .then(updatedRecipe => {
+            .then((updatedRecipe: Recipe) => {
                 recipe = updatedRecipe;
                 if (recipe) {
                     originalContent = recipe.content;
-                    recipe.content = stripPreamble(recipe.content);
+                    recipe = { ...recipe, content: stripPreamble(recipe.content) };
                 }
             })
             .catch(e => {
@@ -80,8 +80,7 @@
         if (recipe) {
             console.log('Cancelling edit recipe...');
             // Revert both content and title to their original values
-            recipe.content = stripPreamble(originalContent);
-            recipe.title = stripExtension(originalTitle);
+            recipe = { ...recipe, content: stripPreamble(originalContent), title: stripExtension(originalTitle) };
         }
         isEditing = false;
     }
@@ -93,12 +92,12 @@
             if (!response.ok) {
                 throw new Error('Failed to fetch recipe');
             }
-            recipe = await response.json();
+            const fetched = await response.json();
+            recipe = fetched;
             if (recipe) {
                 originalContent = recipe.content;
                 originalTitle = recipe.title;
-                recipe.title = stripExtension(recipe.title);
-                recipe.content = stripPreamble(recipe.content);
+                recipe = { ...recipe, title: stripExtension(recipe.title), content: stripPreamble(recipe.content) };
             }
         } catch (e) {
             error = e instanceof Error ? e.message : 'Unknown error';
@@ -133,10 +132,10 @@
         <p><strong>Last Modified:</strong> {recipe?.modified_date}</p>
         <div use:melt={$separator} class="separator"></div>
         <EditableMarkdown 
-            content={isEditing ? originalContent : recipe?.content || ''}
-            bind:isEditing
-            onSave={handleSave}
-	        onCancel={handleCancel}
+            content={isEditing ? String(originalContent) : String(recipe?.content ?? '')}
+            isEditing={Boolean(isEditing)}
+            onSave={handleSave as (detail: { content: string }) => void}
+            onCancel={handleCancel as () => void}
         />
     </article>
 {/if}

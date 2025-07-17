@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
     import Sidebar from "$lib/components/Sidebar.svelte";
-	import { backendConfig as configStore } from '$lib/stores/backendConfig';
+	import { backendConfig as configStore, type BackendConfig } from '$lib/stores/backendConfig';
 
 	// `data` comes from +layout.server.js
-	export let data;
+	const { data } = $props();
 
 	onMount(() => {
 		// Set the config into the store after hydration

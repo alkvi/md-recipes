@@ -1,4 +1,5 @@
 <script lang="ts">
+    const { data } = $props();
     import RecipeGrid from '$lib/components/RecipeGrid.svelte';
     import { backendConfig } from '$lib/stores/backendConfig';
 </script>

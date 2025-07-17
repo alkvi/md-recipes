@@ -2,11 +2,13 @@
     import markdownit from 'markdown-it';
     import DOMPurify from 'dompurify';
 
-	export let onSave: (detail: { content: string }) => void;
-	export let onCancel: () => void;
-    export let content = '';
-    export let isEditing = false;
-    let rawContent = '';
+	let { onSave, onCancel, content = '', isEditing = false } = $props<{
+   onSave: (detail: { content: string }) => void;
+   onCancel: () => void;
+   content?: string;
+   isEditing?: boolean;
+ }>();
+    let rawContent = $state('');
 
     // Initialize markdown-it renderer
     const md = markdownit();
@@ -36,9 +38,11 @@
         return defaultRender(tokens, idx, options, env, self);
     };
 
-    $: if (isEditing) {
-        rawContent = content;
-    }
+    $effect(() => {
+        if (isEditing) {
+            rawContent = content;
+        }
+    });
 
     function handleSave(): void {
         content = rawContent;

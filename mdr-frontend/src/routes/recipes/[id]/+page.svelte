@@ -39,9 +39,10 @@
     }
 
     // Save recipe
-    function handleSave(event: CustomEvent<{ content: string; renderedContent: string }>): void {
+    function handleSave(detail: { content: string; renderedContent: string }) {
         if (recipe) {
-            const editedContent = event.detail.content;
+            console.log('Saving recipe...');
+            const editedContent = detail.content;
             recipe.content = editedContent;
             
             // Save changes to the backend
@@ -75,8 +76,9 @@
     }
 
     // User pressed cancel editing
-    function handleCancel(): void {
+    function handleCancel() {
         if (recipe) {
+            console.log('Cancelling edit recipe...');
             // Revert both content and title to their original values
             recipe.content = stripPreamble(originalContent);
             recipe.title = stripExtension(originalTitle);
@@ -133,8 +135,8 @@
         <EditableMarkdown 
             content={isEditing ? originalContent : recipe?.content || ''}
             bind:isEditing
-            on:save={handleSave}
-            on:cancel={handleCancel}
+            onSave={handleSave}
+	        onCancel={handleCancel}
         />
     </article>
 {/if}

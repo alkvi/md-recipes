@@ -1,18 +1,40 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
     import markdownit from 'markdown-it';
     import DOMPurify from 'dompurify';
 
-    const dispatch = createEventDispatcher<{
-        save: { content: string; renderedContent: string };
-        cancel: void;
-    }>();
-    const md = markdownit();
-
+	export let onSave: (detail: { content: string; renderedContent: string }) => void;
+	export let onCancel: () => void;
     export let content = '';
     export let isEditing = false;
-
     let rawContent = '';
+
+    // Initialize markdown-it renderer
+    const md = markdownit();
+
+    // Override image renderer
+    const defaultRender = md.renderer.rules.image || function (tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+    };
+
+    // Add a rule to image renderer, so that
+    // local image path is replaced with backend path
+    // TODO: get endpoint from conf
+    md.renderer.rules.image = function (tokens, idx, options, env, self) {
+        const token = tokens[idx];
+        const srcIndex = token.attrIndex('src');
+
+        if (srcIndex >= 0) {
+            const srcAttr = token.attrs![srcIndex];
+            const originalSrc = srcAttr[1];
+
+            if (originalSrc.startsWith('../images/')) {
+            // Rewrite path to backend endpoint
+            srcAttr[1] = originalSrc.replace('../images/', 'http://localhost:3000/images/');
+            }
+        }
+
+        return defaultRender(tokens, idx, options, env, self);
+    };
 
     $: if (isEditing) {
         rawContent = content;
@@ -21,13 +43,13 @@
     function handleSave(): void {
         content = rawContent;
         const renderedContent = DOMPurify.sanitize(md.render(content));
-        dispatch('save', { content, renderedContent });
+        onSave?.({ content: rawContent, renderedContent });
         isEditing = false;
     }
 
     function handleCancel(): void {
         isEditing = false;
-        dispatch('cancel');
+        onCancel?.();
     }
 </script>
 

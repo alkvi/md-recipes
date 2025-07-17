@@ -36,6 +36,7 @@ func main() {
         json.NewEncoder(w).Encode(config)
     })
 	r.Mount("/recipes", RecipeRoutes(config, log))
+	r.Mount("/images", ImageRoutes(config, log))
 	http.ListenAndServe(":3000", r)
 }
 
@@ -77,8 +78,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 func RecipeRoutes(config *AppConfig, logger *logrus.Logger) chi.Router {
 
-	folderPath := config.FolderPath
-	logger.Infof("Using folder path: %s", folderPath)
+	logger.Infof("Serving recipes from: %s", config.FolderPath + "/markdown")
 
 	storage := NewRecipeFileStore(config, logger)
 	service := &RecipeService{storage: storage, logger: logger}
@@ -93,3 +93,22 @@ func RecipeRoutes(config *AppConfig, logger *logrus.Logger) chi.Router {
 	r.Get("/search", controller.SearchRecipes)
 	return r
 }
+
+func ImageRoutes(config *AppConfig, logger *logrus.Logger) chi.Router {
+
+	logger.Infof("Serving images from: %s", config.FolderPath + "/images")
+
+    r := chi.NewRouter()
+    imageDir := http.Dir(config.FolderPath + "/images")
+
+	// Set up a file server and strip route from requested file path
+    fs := http.StripPrefix("/images/", http.FileServer(imageDir))
+
+    r.Get("/*", func(w http.ResponseWriter, r *http.Request) {
+        logger.Debugf("Serving image: %s", r.URL.Path)
+        fs.ServeHTTP(w, r)
+    })
+
+    return r
+}
+

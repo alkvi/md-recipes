@@ -2,7 +2,7 @@
     import markdownit from 'markdown-it';
     import DOMPurify from 'dompurify';
 
-	export let onSave: (detail: { content: string; renderedContent: string }) => void;
+	export let onSave: (detail: { content: string }) => void;
 	export let onCancel: () => void;
     export let content = '';
     export let isEditing = false;
@@ -42,8 +42,7 @@
 
     function handleSave(): void {
         content = rawContent;
-        const renderedContent = DOMPurify.sanitize(md.render(content));
-        onSave?.({ content: rawContent, renderedContent });
+        onSave?.({ content: rawContent });
         isEditing = false;
     }
 

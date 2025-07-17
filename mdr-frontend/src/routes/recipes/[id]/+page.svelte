@@ -39,7 +39,7 @@
     }
 
     // Save recipe
-    function handleSave(detail: { content: string; renderedContent: string }) {
+    function handleSave(detail: { content: string }) {
         if (recipe) {
             console.log('Saving recipe...');
             const editedContent = detail.content;

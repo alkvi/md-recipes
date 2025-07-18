@@ -7,7 +7,7 @@ const config = {
   preprocess: sequence([vitePreprocess(), preprocessMeltUI()]),
 
   compilerOptions: {
-    runes: true  // <-- put here, top-level
+    runes: true
   },
 
   kit: {

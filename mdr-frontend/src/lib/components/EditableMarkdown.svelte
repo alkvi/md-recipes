@@ -1,14 +1,26 @@
 <script lang="ts">
     import markdownit from 'markdown-it';
     import DOMPurify from 'dompurify';
+    import { createSeparator, melt } from '@melt-ui/svelte';
 
-	let { onSave, onCancel, content = '', isEditing = false } = $props<{
-   onSave: (detail: { content: string }) => void;
-   onCancel: () => void;
-   content?: string;
-   isEditing?: boolean;
- }>();
-    let rawContent = $state('');
+    // Props
+	let { onSave, title = '', content = '', modifiedDate = '', isEditing = false } = $props<{
+        onSave: (detail: { content: string; title: string }) => void;
+        title?: string;
+        content?: string;
+        modifiedDate?: string;
+        isEditing?: boolean;
+    }>();
+    let draftTitle = $state('');
+    let draftContent = $state('');
+
+    // Decorative separator via melt
+    const {
+        elements: { root: separator },
+    } = createSeparator({
+        orientation: 'horizontal',
+        decorative: true,
+    });
 
     // Initialize markdown-it renderer
     const md = markdownit();
@@ -18,8 +30,14 @@
         return self.renderToken(tokens, idx, options);
     };
 
-    // Add a rule to image renderer, so that
-    // local image path is replaced with backend path
+    // Custom rule for stripping preamble
+    md.core.ruler.before('normalize', 'strip-preamble', (state) => {
+        const preambleRegex = /^(---|\+\+\+)[\s\S]+?\1/;
+        state.src = state.src.replace(preambleRegex, '').trim();
+        return true;
+    });
+
+    // Custom rule for replacing local image path with backend path
     // TODO: get endpoint from conf
     md.renderer.rules.image = function (tokens, idx, options, env, self) {
         const token = tokens[idx];
@@ -38,46 +56,76 @@
         return defaultRender(tokens, idx, options, env, self);
     };
 
+    // Initialize drafts on edit toggle
     $effect(() => {
         if (isEditing) {
-            rawContent = content;
+            draftTitle = title;
+            draftContent = content;
         }
     });
 
     function handleSave(): void {
-        content = rawContent;
-        onSave?.({ content: rawContent });
+        console.log("Saving recipe")
+        title = draftTitle;
+        content = draftContent;
         isEditing = false;
+        onSave?.({ title: draftTitle, content: draftContent });
     }
 
     function handleCancel(): void {
+        console.log("Cancel edit recipe")
         isEditing = false;
-        onCancel?.();
     }
 </script>
 
-{#if isEditing}
-    <div class="edit-container">
-        <textarea 
-            bind:value={rawContent}
-            rows="20"
-            placeholder=""
-        ></textarea>
-        <div class="edit-actions">
-            <button on:click={handleSave}>Save</button>
-            <button on:click={handleCancel}>Cancel</button>
-        </div>
+{#if isEditing}        
+    <input
+        type="text"
+        bind:value={draftTitle}
+        class="title-input"
+        placeholder="Recipe title"
+        onkeydown={(e) => {
+            if (e.key === 'Enter') handleSave();
+            if (e.key === 'Escape') handleCancel();
+        }}
+    />
+
+    <div use:melt={$separator} class="separator"></div>
+
+    <textarea 
+        bind:value={draftContent}
+        rows="20"
+        placeholder=""
+    ></textarea>
+    <div class="edit-actions">
+        <button onclick={handleSave}>Save</button>
+        <button onclick={handleCancel}>Cancel</button>
     </div>
+
+    <p><strong>Last Modified:</strong> {modifiedDate}</p>
 {:else}
+    <button
+        class="title-button"
+        onclick={() => isEditing = true} 
+        onkeydown={(e) => e.key === 'Enter' && (isEditing = true)}
+        aria-label="Edit title"
+    >
+        <h1>{title}</h1>
+    </button>
+
+    <div use:melt={$separator} class="separator"></div>
+
     <div 
         class="content" 
-        on:click={() => isEditing = true} 
-        on:keydown={(e) => e.key === 'Enter' && (isEditing = true)}
+        onclick={() => isEditing = true} 
+        onkeydown={(e) => e.key === 'Enter' && (isEditing = true)}
         role="button" 
         tabindex="0"
     >
         {@html DOMPurify.sanitize(md.render(content))}
     </div>
+
+    <p><strong>Last Modified:</strong> {modifiedDate}</p>
 {/if}
 
 <style>
@@ -90,11 +138,34 @@
     .content:hover {
         background-color: #f5f5f5;
     }
+
+    .title-button {
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        margin: 0;
+        text-align: left;
+        width: 100%;
+        color: black;
+        cursor: pointer;
+        padding-left: 1rem;
+        border-radius: 4px;
+    }
+
+    .title-button h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .title-button:hover {
+        background-color: #f5f5f5;
+    }
     
     .edit-container {
         width: 100%;
     }
-    
+
     textarea {
         width: 100%;
         padding: 1rem;
@@ -122,5 +193,22 @@
     
     button:hover {
         background-color: #363636;
+    }
+
+    .title-input {
+        font-size: 2rem;
+        font-weight: bold;
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 0rem;
+    }
+
+    .separator {
+        background-color: #ccc;
+        margin: 1rem 0;
+        height: 1px;
+        width: 100%;
     }
 </style> 

@@ -1,7 +1,6 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import EditableMarkdown from '$lib/components/EditableMarkdown.svelte';
-    import { createSeparator, melt } from '@melt-ui/svelte';
     import type { Recipe } from '$lib/types/recipe';
     import { stripExtension } from '$lib/utils/string';
     import { page } from '$app/stores';
@@ -11,94 +10,40 @@
     let recipe = $state<Recipe | null>(null);
     let error = $state<string | null>(null);
     let loading = $state(true);
-    let isEditing = $state(false);
-    let originalContent = $state('');
-    let originalTitle = $state('');
     
-    // Decorative separator via melt
-    const {
-        elements: { root: separator },
-    } = createSeparator({
-        orientation: 'horizontal',
-        decorative: true,
-    });
-
-    // Handles editing toggle via the title
-    // which is a button styled as h1
-    function toggleEditing(event: KeyboardEvent | MouseEvent) {
-        if (event.type === 'keydown' && (event as KeyboardEvent).key !== 'Enter' && (event as KeyboardEvent).key !== ' ') {
-            return;
-        }
-        isEditing = true;
-    }
-
-    // Strip the metadata preamble in markdown content
-    function stripPreamble(content: string): string {
-        const preamble_regex = /^(---|\+\+\+)[\s\S]+?\1/;
-        return content.replace(preamble_regex, '').trim();
-    }
-
     // Save recipe
-    function handleSave(detail: { content: string }) {
-        if (recipe) {
-            console.log('Saving recipe...');
-            const editedContent = detail.content;
-            recipe = { ...recipe, content: editedContent };
-            
-            // Save changes to the backend
-            fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...recipe,
-                    title: recipe.title // Include the potentially updated title
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to save recipe');
-                }
-                return response.json();
-            })
-            .then((updatedRecipe: Recipe) => {
-                recipe = updatedRecipe;
-                if (recipe) {
-                    originalContent = recipe.content;
-                    recipe = { ...recipe, content: stripPreamble(recipe.content) };
-                }
-            })
-            .catch(e => {
-                error = e instanceof Error ? e.message : 'Unknown error';
-            });
-        }
-    }
+    function handleSave(updated: { title: string, content: string }) {
+        if (!recipe) return;
 
-    // User pressed cancel editing
-    function handleCancel() {
-        if (recipe) {
-            console.log('Cancelling edit recipe...');
-            // Revert both content and title to their original values
-            recipe = { ...recipe, content: stripPreamble(originalContent), title: stripExtension(originalTitle) };
-        }
-        isEditing = false;
+        // Save changes to the backend
+        console.log("Sending PUT request for saving recipe")
+        fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ...recipe,
+                title: updated.title,
+                content: updated.content
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to save recipe');
+            }
+            console.log("Recipe update OK")
+            return response.json();
+        })
     }
 
     // Fetch recipe when first mounted
     onMount(async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/recipes/${id}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch recipe');
-            }
-            const fetched = await response.json();
-            recipe = fetched;
-            if (recipe) {
-                originalContent = recipe.content;
-                originalTitle = recipe.title;
-                recipe = { ...recipe, title: stripExtension(recipe.title), content: stripPreamble(recipe.content) };
-            }
+            if (!response.ok) throw new Error('Failed to fetch recipe');
+            recipe = await response.json();
+            if (recipe) recipe.title = stripExtension(recipe.title);
         } catch (e) {
             error = e instanceof Error ? e.message : 'Unknown error';
         } finally {
@@ -113,71 +58,19 @@
     <p>Error: {error}</p>
 {:else}
     <article>
-        {#if isEditing && recipe}
-            <input 
-                type="text"
-                bind:value={recipe.title}
-                class="title-input"
-                placeholder="Recipe title"
+        {#if recipe}
+            <EditableMarkdown 
+                title={recipe.title}
+                content={recipe.content}
+                modifiedDate={recipe.modified_date}
+                onSave={handleSave}
             />
-        {:else}
-            <button 
-                class="title-button"
-                on:click={toggleEditing}
-                on:keydown={toggleEditing}
-            >
-                <h1>{recipe?.title}</h1>
-            </button>
         {/if}
-        <p><strong>Last Modified:</strong> {recipe?.modified_date}</p>
-        <div use:melt={$separator} class="separator"></div>
-        <EditableMarkdown 
-            content={isEditing ? String(originalContent) : String(recipe?.content ?? '')}
-            isEditing={Boolean(isEditing)}
-            onSave={handleSave as (detail: { content: string }) => void}
-            onCancel={handleCancel as () => void}
-        />
     </article>
 {/if}
 
 <style>
     article {
         padding: 2rem;
-    }
-
-    .separator {
-        background-color: #ccc;
-        margin: 1rem 0;
-        height: 1px;
-        width: 100%;
-    }
-
-    .title-input {
-        font-size: 2rem;
-        font-weight: bold;
-        width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
-
-    .title-button {
-        background: none;
-        border: none;
-        padding: 0;
-        margin: 0;
-        text-align: left;
-        width: 100%;
-        cursor: pointer;
-    }
-
-    .title-button:hover h1 {
-        background-color: #f5f5f5;
-    }
-
-    .title-button:focus-visible h1 {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
     }
 </style>

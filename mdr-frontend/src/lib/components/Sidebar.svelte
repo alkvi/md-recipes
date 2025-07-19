@@ -15,7 +15,7 @@
 </script>
 
 <nav class:expanded={isExpanded}>
-	<button on:click={() => isExpanded = !isExpanded}>
+	<button onclick={() => isExpanded = !isExpanded}>
 		{#if isExpanded}
 			Close
 		{:else}

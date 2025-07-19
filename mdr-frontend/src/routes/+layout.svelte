@@ -4,7 +4,7 @@
 	import { backendConfig as configStore, type BackendConfig } from '$lib/stores/backendConfig';
 
 	// `data` comes from +layout.server.js
-	const { data } = $props();
+	let { children, data } = $props();
 
 	onMount(() => {
 		// Set the config into the store after hydration
@@ -21,7 +21,7 @@
 			</div>
 		</aside>
 		<div class="main-content">
-			<slot />
+			{@render children?.()}
 		</div>
 	</div>
 </div>

@@ -1,12 +1,15 @@
 <script lang="ts">
+    import type { Snippet } from 'svelte';
+
     export const content: string = "test";
+    let { children, card_title }: { children?: Snippet; card_title?: Snippet } = $props();
 </script>
 
 <div class="main">
     <h1>
-        <slot name="card_title"/>
+        {@render card_title?.()}
     </h1>
-    <slot/>
+    {@render children?.()}
 </div>
 
 <style>

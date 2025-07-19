@@ -38,7 +38,9 @@
 {:else}
     {#each recipes as recipe}
         <RecipeCard>
-            <a slot="card_title" href={`/recipes/${recipe.id}`}>{recipe.title}</a>
+            {#snippet card_title()}
+					<a href={`/recipes/${recipe.id}`}>{recipe.title}</a>
+			{/snippet}
             <p>{recipe.content}</p>
         </RecipeCard>
     {/each}

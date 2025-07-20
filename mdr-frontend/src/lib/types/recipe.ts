@@ -3,4 +3,5 @@ export interface Recipe {
     title: string;
     content: string;
     modified_date: string;
+    image_path?: string | null;
 } 

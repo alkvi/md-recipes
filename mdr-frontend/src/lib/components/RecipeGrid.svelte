@@ -18,7 +18,10 @@
             recipes = await response.json();
             recipes = recipes.map(recipe => ({
                 ...recipe,
-                title: stripExtension(recipe.title)
+                title: stripExtension(recipe.title),
+                image_path: recipe.image_path
+                    ? recipe.image_path.replace('../images/', 'http://localhost:3000/images/')
+                    : null
             }));
         } catch (e) {
             error = e instanceof Error ? e.message : 'Unknown error';
@@ -41,6 +44,11 @@
             {#snippet card_title()}
 					<a href={`/recipes/${recipe.id}`}>{recipe.title}</a>
 			{/snippet}
+            {#snippet card_image()}
+                {#if recipe.image_path}
+                    <img src={recipe.image_path} alt="Recipe preview" class="recipe-image" />
+                {/if}
+            {/snippet}
             <p>{recipe.content}</p>
         </RecipeCard>
     {/each}
@@ -57,6 +65,14 @@
         grid-auto-rows: auto;
         grid-gap: 1rem;
         padding: 2rem;
+	}
+
+    .recipe-image {
+		width: 100%;
+		max-height: 200px;
+		object-fit: cover;
+		margin: 1rem 0;
+		border-radius: 4px;
 	}
 
 </style>

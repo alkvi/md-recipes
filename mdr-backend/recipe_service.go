@@ -3,6 +3,7 @@ package main
 import (
 	"strings"
 	"fmt"
+	"regexp"
 
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v3"
@@ -23,10 +24,29 @@ func (s *RecipeService) enrichTags(recipes []*Recipe) {
 	}
 }
 
+func (s *RecipeService) enrichImage(recipes []*Recipe) {
+	// Regex to match: ![Alt Text](../images/foo.png)
+	re := regexp.MustCompile(`!\[[^\]]*\]\(([^)]+)\)`)
+
+	for _, r := range recipes {
+		s.logger.Debugf("Parsing image link for recipe %s", r.Title)
+
+		matches := re.FindStringSubmatch(r.Content)
+		if len(matches) >= 2 {
+			imagePath := matches[1] // Capture group for the image URL
+			s.logger.Debugf("Found image for %s: %s", r.Title, imagePath)
+			r.ImagePath = imagePath
+		} else {
+			s.logger.Debugf("No image found in recipe %s", r.Title)
+		}
+	}
+}
+
 func (s *RecipeService) ListRecipes() []*Recipe {
 	recipes := s.storage.List()
 	s.logger.Debugf("Found %d recipes", len(recipes))
 	s.enrichTags(recipes)
+	s.enrichImage(recipes)
 	return recipes
 }
 
@@ -34,6 +54,7 @@ func (s *RecipeService) GetRecipe(id string) *Recipe {
 	recipe := s.storage.Get(id)
 	if recipe != nil {
 		s.enrichTags([]*Recipe{recipe})
+		s.enrichImage([]*Recipe{recipe})
 	}
 	return recipe
 }
@@ -58,6 +79,7 @@ func (s *RecipeService) DeleteRecipe(id string) *Recipe {
 func (s *RecipeService) GetRecipeByFilename(filename string) *Recipe {
 	recipes := s.storage.List()
 	s.enrichTags(recipes)
+	s.enrichImage(recipes)
 	for _, recipe := range recipes {
 		if recipe.Filename == filename {
 			return recipe
@@ -69,6 +91,7 @@ func (s *RecipeService) GetRecipeByFilename(filename string) *Recipe {
 func (s *RecipeService) SearchRecipes(filters map[string]string) []*Recipe {
 	allRecipes := s.storage.List()
 	s.enrichTags(allRecipes)
+	s.enrichImage(allRecipes)
 	var results []*Recipe
 
 	for _, recipe := range allRecipes {

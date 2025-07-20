@@ -1,14 +1,18 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
 
-    export const content: string = "test";
-    let { children, card_title }: { children?: Snippet; card_title?: Snippet } = $props();
+    let { children, card_title, card_image }: { 
+        children?: Snippet; 
+        card_title?: Snippet;
+        card_image?: Snippet;
+    } = $props();
 </script>
 
 <div class="main">
     <h1>
         {@render card_title?.()}
     </h1>
+    {@render card_image?.()}
     {@render children?.()}
 </div>
 
